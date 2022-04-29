@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+ web:
+  build:
+   context: .
+  ports:
+  - 8000:5000
+  volumes:
+  - python-publis:/app
+  
+
+ mongodb3:
+    image: mongo
+    container_name: mongodb3
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=pa
+    volumes:
+      - mongodb-publis:/data/db
+      - mongo-fichiers-publis:/home
+    ports:
+      - 27017:27017
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo 27017:27017/test --quiet
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+
+volumes:
+  mongodb-publis:
+  python-publis:
+  mongo-fichiers-publis:
+   
+    
+
