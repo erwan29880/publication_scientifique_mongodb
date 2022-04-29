@@ -14,6 +14,10 @@ Le containeur python est créé à partir d'un Dockerfile, sur la base de la der
 
 Les deux containeurs sont orchestrés par docker compose, des volumes sont créés pour la persistance des données.
 
+Le containeur est créé par la commande : 
+
+> docker-compose up -d --build
+
 
 
 
